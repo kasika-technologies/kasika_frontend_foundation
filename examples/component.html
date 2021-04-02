@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+</head>
+<body>
+<div id="app"></div>
+<script type="module">
+    import Component from "../src/component/index.js";
+
+    const app = new Component('#app', {
+        data: {
+            names: ['Tanaka', 'Suzuki']
+        },
+        template(props) {
+            return `<ul>
+                ${props.names.map(name => {
+                return `<li>${name}</li>`;
+            }).join('')}
+            </ul>`;
+        }
+    })
+
+    app.render();
+
+    app.data.names.push("Takahashi");
+
+    app.data = {
+        names: ['田中', '鈴木', '高橋']
+    }
+
+    app.data.names.push('佐藤');
+</script>
+</body>
+</html>

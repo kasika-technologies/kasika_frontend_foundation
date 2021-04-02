@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nested component with shared state example</title>
+</head>
+<body>
+<div id="parent"></div>
+<div class="names"></div>
+<script type="module">
+    import {Component, State} from '../src/kff.js';
+
+    const state = new State({
+        data: {
+            title: "Nested component sample",
+            names: ['Tanaka', 'Suzuki']
+        }
+    })
+
+    const parent = new Component('#parent', {
+        state,
+        template(props) {
+            return `<h1>${props.title}</h1><div id="child"></div>`;
+        }
+    })
+
+    const child = new Component('#child', {
+        state,
+        template(props) {
+            return `<ul>
+                ${props.names.map(name => {
+                return `<li>${name}</li>`;
+            }).join('')}
+            </ul>`;
+        },
+        attachTo: parent
+    })
+
+    parent.render();
+
+    const names = new Component('.names', {
+        state,
+        template(props) {
+            return `<ul>
+                ${props.names.map(name => {
+                return `<li>${name}</li>`;
+            }).join('')}
+            </ul>`;
+        }
+    })
+
+    names.render();
+
+    state.data.title = "Updated title";
+</script>
+</body>
+</html>

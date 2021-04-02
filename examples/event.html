@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>event</title>
+</head>
+<body>
+<button type="button" class="click">Click</button>
+<p class="output"></p>
+<script type="module">
+    import Event from "../src/event/index.js";
+
+    const handler = e => {
+        document.querySelector('.output').innerHTML = 'clicked';
+    }
+
+    Event.on('click', '.click', handler);
+</script>
+</body>
+</html>

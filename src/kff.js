@@ -1,4 +1,5 @@
 import Component from "./component/index.js";
+import Event from "./event/index.js";
 import State from "./state/index.js";
 
-export {Component, State}
+export {Component, Event, State}

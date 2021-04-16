@@ -1,7 +1,7 @@
-const copy = o => {
+const copy = (o, allowHTML) => {
     const cloneArray = () => {
         return o.map(item => {
-            return copy(item);
+            return copy(item, allowHTML);
         })
     }
 
@@ -14,7 +14,7 @@ const copy = o => {
     const cloneMap = () => {
         let clone = new Map();
         for (let [k, v] of o) {
-            clone.set(k, copy(v));
+            clone.set(k, copy(v, allowHTML));
         }
         return clone;
     }
@@ -28,16 +28,15 @@ const copy = o => {
     const cloneSet = () => {
         let clone = new Set();
         for (let item of set) {
-            clone.add(copy(item));
+            clone.add(copy(item, allowHTML));
         }
         return clone;
     }
 
-
     const copyProperties = clone => {
         for (let key in o) {
             if (o.hasOwnProperty(key)) {
-                clone[key] = copy(o[key]);
+                clone[key] = copy(o[key], allowHTML);
             }
         }
     }
@@ -67,7 +66,11 @@ const copy = o => {
             return cloneSet();
             break;
         case 'string':
-            return sanitizeString();
+            if (!allowHTML) {
+                return sanitizeString();
+            } else {
+                return o;
+            }
             break;
         default:
             return o;

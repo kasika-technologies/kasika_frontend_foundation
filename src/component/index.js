@@ -15,6 +15,7 @@ class Component {
         this.template = options.template;
         this.state = options.state;
         this.isSharedState = options.isSharedState ? true : false;
+        this.allowHTML = (options.allowHTML !== null || options.allowHTML !== undefined) ? options.allowHTML : false
 
         this._data = null;
 
@@ -77,7 +78,7 @@ class Component {
             return;
         }
 
-        let data = utilities.copy((this.state ? this.state.data : this.data));
+        let data = utilities.copy((this.state ? this.state.data : this.data) || {}, this.allowHTML);
 
         let template;
         if (utilities.getTypeOfObject(this.template) === 'function') {

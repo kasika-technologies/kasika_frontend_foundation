@@ -19,7 +19,8 @@
                 return `<li>${name}</li>`;
             }).join('')}
             </ul>`;
-        }
+        },
+        allowHTML: true
     })
 
     app.render();
@@ -31,6 +32,7 @@
     }
 
     app.data.names.push('佐藤');
+    app.data.names.push('<h1>山田</h1>');
 </script>
 </body>
 </html>

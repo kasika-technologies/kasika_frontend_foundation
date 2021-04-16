@@ -1,0 +1,25 @@
+{
+  "name": "kasika_frontend_foundation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/kff.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kasika-technologies/kasika_frontend_foundation.git"
+  },
+  "author": "Kasika, Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kasika-technologies/kasika_frontend_foundation/issues"
+  },
+  "homepage": "https://github.com/kasika-technologies/kasika_frontend_foundation#readme",
+  "devDependencies": {
+    "esbuild": "^0.11.11"
+  }
+}
